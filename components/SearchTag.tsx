@@ -1,7 +1,20 @@
 "use client"
-import React from "react"
+import { setQuery } from "@/store/features/tagSlice"
+import { useAppDispatch } from "@/store/hooks"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import React, { useEffect } from "react"
 
-export function SearchTag() {
+export default function SearchTag() {
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const tag = searchParams.get("tag")
+    if (tag) dispatch(setQuery(tag))
+  }, [])
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -10,7 +23,10 @@ export function SearchTag() {
     const isInput = tag instanceof HTMLInputElement
     if (!isInput) return
 
-    console.log("Tag selected", tag.value)
+    const params = new URLSearchParams(searchParams)
+    params.set("tag", tag.value)
+    replace(`${pathname}?${params.toString()}`)
+    dispatch(setQuery(tag.value))
 
     tag.value = ""
   }
