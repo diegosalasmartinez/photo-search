@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { StoreProvider } from "./store-provider"
 import "./globals.css"
 import SearchTag from "@/components/SearchTag"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,7 +22,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className} suppressHydrationWarning={true}>
           <main className="flex min-h-dvh flex-col p-4">
-            <SearchTag />
+            <Suspense>
+              <SearchTag />
+            </Suspense>
             {children}
           </main>
         </body>
