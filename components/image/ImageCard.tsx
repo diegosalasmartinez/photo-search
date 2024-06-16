@@ -7,7 +7,7 @@ export default function ImageCard({ image }: { image: UnsplashImage }) {
   const height = 400 * (image.height / image.width)
 
   return (
-    <article className="mt-2 mb-4 relative w-fit">
+    <article className="relative w-fit">
       <Image
         src={image.urls.small}
         alt={image.alt_description ?? image.description}
