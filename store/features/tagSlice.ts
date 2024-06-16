@@ -12,7 +12,7 @@ export const tagSlice = createSlice({
   name: "tag",
   initialState,
   reducers: {
-    setQuery: (state, action: PayloadAction<string>) => {
+    setQuery: (state, action: PayloadAction<string | null>) => {
       state.query = action.payload
     }
   },

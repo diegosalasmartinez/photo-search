@@ -8,7 +8,7 @@ export default function ImageCard({ image }: { image: UnsplashImage }) {
     <article className="mt-2 mb-4 relative w-fit">
       <Image
         src={image.urls.small}
-        alt={image.alt_description}
+        alt={image.alt_description ?? image.description}
         width={image.width}
         height={image.height}
         className="w-min rounded-md"
