@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { StoreProvider } from "./store-provider"
 import "./globals.css"
+import SearchTag from "@/components/SearchTag"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,7 +20,10 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="en">
         <body className={inter.className} suppressHydrationWarning={true}>
-          {children}
+          <main className="flex min-h-dvh flex-col p-4">
+            <SearchTag />
+            {children}
+          </main>
         </body>
       </html>
     </StoreProvider>
