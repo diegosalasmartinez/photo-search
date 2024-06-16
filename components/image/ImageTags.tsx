@@ -17,16 +17,18 @@ export default function ImageTags({ tags }: { tags: UnspashTag[] }) {
   }
 
   return (
-    <div className="flex gap-2">
-      {formattedTags.map((tag) => (
-        <button
-          key={tag.id}
-          className="text-xs border-[1px] border-white text-white px-2 py-1.5 rounded-md max-w-24 truncate hover:bg-white hover:text-black transition-all duration-200"
-          onClick={() => handleTagSelected(tag.title)}
-        >
-          {tag.title}
-        </button>
-      ))}
+    <div className="flex-grow overflow-auto">
+      <div className="flex flex-wrap gap-2 justify-end">
+        {formattedTags.map((tag) => (
+          <button
+            key={tag.id}
+            className="text-xs border-[1px] border-white text-white px-2 py-1.5 rounded-md max-w-24 truncate hover:bg-white hover:text-black transition-all duration-200"
+            onClick={() => handleTagSelected(tag.title)}
+          >
+            {tag.title}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
