@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { getImages, getRandomImages } from "../../server/unsplash"
 import ImageCard from "./ImageCard"
 
