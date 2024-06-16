@@ -1,5 +1,7 @@
 import TagResults from "@/components/TagResults"
 import ImageList from "@/components/image/ImageList"
+import Loader from "@/components/ui/Loader"
+import { Suspense } from "react"
 
 interface HomeProps {
   searchParams: {
@@ -12,7 +14,9 @@ export default function Home({ searchParams }: HomeProps) {
 
   return (
     <TagResults>
-      <ImageList query={query} />
+      <Suspense fallback={<Loader />}>
+        <ImageList query={query} />
+      </Suspense>
     </TagResults>
   )
 }
