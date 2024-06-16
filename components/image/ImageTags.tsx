@@ -1,20 +1,31 @@
-import { UnspashTag } from "@/lib/interfaces/UnsplashImage"
+"use client"
+
+import { useRouter } from "next/navigation"
+import { useAppDispatch } from "@/store/hooks"
 import { formatTags } from "@/utils/tags"
-import Link from "next/link"
+import { UnspashTag } from "@/lib/interfaces/UnsplashImage"
+import { setQuery } from "@/store/features/tagSlice"
 
 export default function ImageTags({ tags }: { tags: UnspashTag[] }) {
-  const fomrattedTags = formatTags(tags)
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const formattedTags = formatTags(tags)
+
+  const handleTagSelected = (tag: string) => {
+    dispatch(setQuery(tag))
+    router.push(`/tag/${tag}`)
+  }
 
   return (
     <div className="flex gap-2">
-      {fomrattedTags.map((tag) => (
-        <Link
+      {formattedTags.map((tag) => (
+        <button
           key={tag.id}
-          href={`/tag/${tag.title}`}
-          className="text-xs border-[1px] border-white text-white px-2 py-1.5 rounded-md max-w-28 truncate hover:bg-white hover:text-black transition-all duration-200"
+          className="text-xs border-[1px] border-white text-white px-2 py-1.5 rounded-md max-w-24 truncate hover:bg-white hover:text-black transition-all duration-200"
+          onClick={() => handleTagSelected(tag.title)}
         >
           {tag.title}
-        </Link>
+        </button>
       ))}
     </div>
   )
