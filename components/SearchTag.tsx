@@ -1,8 +1,12 @@
 "use client"
+
 import { setQuery } from "@/store/features/tagSlice"
 import { useAppDispatch } from "@/store/hooks"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import React, { useEffect } from "react"
+import Typography from "./ui/Typography"
+import Button from "./ui/Button"
+import Input from "./ui/Input"
 
 export default function SearchTag() {
   const searchParams = useSearchParams()
@@ -33,18 +37,10 @@ export default function SearchTag() {
 
   return (
     <>
-      <h2 className="font-bold text-lg mb-1">Search by tag</h2>
-      <form className="text-base" onSubmit={handleSubmit}>
-        <input
-          className="shadow appearance-none rounded-md w-[300px] border-[1px] bg-white text-gray-500 border-gray-300 p-2 text-sm leading-tight focus:outline-none focus:shadow-outline"
-          name="tag"
-          type="text"
-          placeholder="flags"
-          required
-        />
-        <button className="ml-4 rounded-md bg-sky-600 p-2 text-white text-sm hover:bg-sky-800 transition-all duration-200">
-          Search
-        </button>
+      <Typography text="Search by tag" />
+      <form className="flex gap-2 md:gap-4 text-base" onSubmit={handleSubmit}>
+        <Input name="tag" type="text" placeholder="flags" required />
+        <Button text="Search" />
       </form>
     </>
   )

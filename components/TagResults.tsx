@@ -2,6 +2,7 @@
 
 import { selectQuery } from "@/store/features/tagSlice"
 import { useAppSelector } from "@/store/hooks"
+import Typography from "./ui/Typography"
 
 interface TagResultsProps {
   children: React.ReactNode
@@ -13,7 +14,7 @@ export default function TagResults({ children }: TagResultsProps) {
 
   return (
     <section className="mt-4">
-      <h2 className="font-bold text-lg mb-1">{title}</h2>
+      <Typography text={title} />
       {children}
     </section>
   )
