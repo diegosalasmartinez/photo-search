@@ -3,15 +3,12 @@ import ImageList from "@/components/image/ImageList"
 
 interface TagPageProps {
   params: {
-    id: string | null
-  }
-  searchParams: {
-    tag: string | null
+    slug: string | null
   }
 }
 
-export default function TagPage({ params, searchParams }: TagPageProps) {
-  const query = searchParams?.tag ?? params?.id
+export default function TagPage({ params }: TagPageProps) {
+  const query = params?.slug
 
   return (
     <TagResults>
