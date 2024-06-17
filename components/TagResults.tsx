@@ -1,7 +1,7 @@
 "use client"
 
-import { selectQuery } from "@/store/features/tagSlice"
 import { useAppSelector } from "@/store/hooks"
+import { selectQuery } from "@/store/features/tagSlice"
 import Typography from "./ui/Typography"
 
 interface TagResultsProps {
@@ -9,8 +9,8 @@ interface TagResultsProps {
 }
 
 export default function TagResults({ children }: TagResultsProps) {
-  const status = useAppSelector(selectQuery)
-  const title = status ? "Results" : "Trending Photos Rigth Now"
+  const query = useAppSelector(selectQuery)
+  const title = query ? "Results" : "Trending Photos Rigth Now"
 
   return (
     <section className="mt-4">
