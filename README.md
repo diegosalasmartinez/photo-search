@@ -7,7 +7,7 @@
 
 **Steps:**
 
-1. Clone this project
+1. Clone this repository.
 
 2. Install dependencies:
 
@@ -21,9 +21,10 @@ npm install
 UNSPLASH_API_KEY=YOUR OWN API KEY
 ```
 
-
 4. Run the project:
 
 ```bash
 npm run dev
 ```
+
+5. Visit the [website](https://photo-search-three.vercel.app).
