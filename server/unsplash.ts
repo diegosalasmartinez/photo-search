@@ -5,10 +5,12 @@ import {
 
 export async function getRandomImages(): Promise<UnsplashImage[]> {
   const count = 30
+  const baseUrl = "https://api.unsplash.com"
   const apiKey = process.env.UNSPLASH_API_KEY || ""
 
+  const queryParams = `count=${count}&client_id=${apiKey}`
   const res = await fetch(
-    `https://api.unsplash.com/photos/random?count=${count}&client_id=${apiKey}`,
+    `${baseUrl}/photos/random?${queryParams}`,
     { next: { revalidate: 600 } } // Revalidate in 10 minutes
   )
 
@@ -20,12 +22,16 @@ export async function getRandomImages(): Promise<UnsplashImage[]> {
   return json as UnsplashImage[]
 }
 
-export async function getImages(query: string): Promise<UnsplashImage[]> {
-  const queryParam = encodeURIComponent(query)
+export async function getImages(tag: string): Promise<UnsplashImage[]> {
+  const count = 30
+  const baseUrl = "https://api.unsplash.com"
   const apiKey = process.env.UNSPLASH_API_KEY || ""
+  const query = encodeURIComponent(tag)
+
+  const queryParams = `query=${query}&per_page=${count}&client_id=${apiKey}`
 
   const res = await fetch(
-    `https://api.unsplash.com/search/photos?query=${queryParam}&client_id=${apiKey}`,
+    `${baseUrl}/search/photos?${queryParams}`,
     { next: { revalidate: 600 } } // Revalidate in 10 minutes
   )
 
