@@ -1,18 +1,14 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useAppDispatch } from "@/store/hooks"
 import { formatTags } from "@/utils/tags"
 import { UnspashTag } from "@/lib/interfaces/UnsplashImage"
-import { setQuery } from "@/store/features/tagSlice"
 
 export default function ImageTags({ tags }: { tags: UnspashTag[] }) {
-  const dispatch = useAppDispatch()
   const router = useRouter()
   const formattedTags = formatTags(tags)
 
   const handleTagSelected = (tag: string) => {
-    dispatch(setQuery(tag))
     router.push(`/tag/${tag}`)
   }
 
